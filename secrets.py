@@ -1,13 +1,24 @@
-# --- SECRETS GENÉRICAS PARA DETECÇÃO ---
+# --- MySQL ---
+mysql_connection_uri = "mysql://root:12345@localhost:3306/es_extended?charset=utf8mb4"
+mysql_connection_kvp = "user=root;password=12345;host=localhost;port=3306;database=es_extended;charset=utf8mb4"
 
-# 1. PostgreSQL Connection String
-# Formato padrão: postgresql://[user]:[password]@[host]:[port]/[database]
-postgres_connection_string = "postgresql://db_user_postgres:Pg_S3cr3t_P4ss@db.internal.example.com:5432/production_db"
+# --- MongoDB ---
+mongodb_connection_uri = "mongodb+srv://root:12345@cluster0.abcde.mongodb.net/es_extended?retryWrites=true&w=majority"
+mongodb_local_connection_uri = "mongodb://root:12345@localhost:27017/es_extended"
 
-# 2. MySQL Connection String
-# Formato padrão: mysql://[user]:[password]@[host]:[port]/[database]
-mysql_connection_string = "mysql://db_user_mysql:My_S3cr3t_P4ss@10.0.0.12:3306/main_database"
+# --- PostgreSQL ---
+postgres_connection_uri = "postgresql://root:12345@localhost:5432/es_extended"
+postgres_connection_kvp = "user=root password=12345 host=localhost port=5432 dbname=es_extended"
 
-# 3. MongoDB Connection String
-# Formato padrão: mongodb+srv://[user]:[password]@[cluster]/[database]
-mongodb_connection_string = "mongodb+srv://mongo_user:Mongo_S3cr3t_P4ss@cluster0.abcde.mongodb.net/app_data?retryWrites=true&w=majority"
+# Imprimir todas as conexões para verificação
+print("--- MySQL ---")
+print(f"URI: {mysql_connection_uri}")
+print(f"Chave-Valor: {mysql_connection_kvp}\n")
+
+print("--- MongoDB ---")
+print(f"URI (Atlas/Cluster): {mongodb_connection_uri}")
+print(f"URI (Local): {mongodb_local_connection_uri}\n")
+
+print("--- PostgreSQL ---")
+print(f"URI: {postgres_connection_uri}")
+print(f"Chave-Valor: {postgres_connection_kvp}")
