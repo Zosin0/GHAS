@@ -96,6 +96,20 @@ def get_file_content():
     except FileNotFoundError:
         return "Arquivo não encontrado.", 404
 
+# NOVO: VULNERABILIDADE LOW/MEDIUM - OPEN REDIRECT
+@app.route('/redirect')
+def redirect_to_url():
+    """
+    Vulnerabilidade BAIXA/MÉDIA: Open Redirect (CWE-601)
+    A aplicação redireciona para uma URL fornecida pelo usuário sem validação.
+    Isso pode ser usado para enganar usuários e levá-los a sites maliciosos.
+    Exemplo de ataque: /redirect?url=http://evil-site.com
+    """
+    redirect_url = request.args.get('url')
+    
+    # A linha abaixo é a vulnerabilidade
+    return redirect(redirect_url)
+
 if __name__ == '__main__':
     # AVISO: O modo debug do Flask também é uma vulnerabilidade (CWE-117, CWE-215)
     # se exposto em produção, o que o CodeQL também pode apontar.
